@@ -7,10 +7,12 @@ import java.util.Map;
 public class KubeFormatter {
 
     private final String KIND_DEPLOYMENT = "deployment";
+    private final String KIND_D = "d";
     private final String KIND_CONFIGMAP = "configmap";
     private final String KIND_CM = "cm";
     private final String KIND_SECRET = "secret";
     private final String KIND_SERVICE = "service";
+    private final String KIND_SVC= "svc";
     private final String KIND_INGRESS = "ingress";
     private final String KIND_HPA = "hpa";
     private final String KIND_HPA2 = "horizontalpodautoscaler";
@@ -21,13 +23,13 @@ public class KubeFormatter {
     public Map<String, Object> format(String kind, Map<String, Object> raw) {
 
         Map<String, Object> resultMap = null;
-        if (kind.equals(KIND_DEPLOYMENT)) {
+        if (kind.equals(KIND_DEPLOYMENT) || kind.equals(KIND_D)) {
             resultMap = formatDeployment(raw);
         } else if (kind.equals(KIND_CONFIGMAP) || kind.equals(KIND_CM)) {
             resultMap = formatCM(raw);
         } else if (kind.equals(KIND_SECRET)) {
             resultMap = formatSecret(raw);
-        } else if (kind.equals(KIND_SERVICE)) {
+        } else if (kind.equals(KIND_SERVICE) || kind.equals(KIND_SVC)) {
             resultMap = formatService(raw);
         } else if (kind.equals(KIND_INGRESS)) {
             resultMap = formatIngress(raw);
