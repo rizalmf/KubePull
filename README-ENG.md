@@ -2,7 +2,7 @@
 Pull data from Kubernetes Cluster existing and write to your local machine
 
 ## Note
-1. Please make sure command `kubectl` already installed in your local machine
+1. Please make sure `kubectl` command already installed in your local machine
 2. JRE 11 already installed in your local machine
 
 ## Usage
