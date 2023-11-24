@@ -13,6 +13,7 @@ public class KubeFormatter {
     private final String KIND_SERVICE = "service";
     private final String KIND_INGRESS = "ingress";
     private final String KIND_HPA = "hpa";
+    private final String KIND_HPA2 = "horizontalpodautoscaler";
     private final String KIND_CRONJOB = "cronjob";
     private final String KIND_PERSISTENT_VOLUME = "persistentvolumeclaim";
     private final String KIND_PVC = "pvc";
@@ -30,7 +31,7 @@ public class KubeFormatter {
             resultMap = formatService(raw);
         } else if (kind.equals(KIND_INGRESS)) {
             resultMap = formatIngress(raw);
-        } else if (kind.equals(KIND_HPA)) {
+        } else if (kind.equals(KIND_HPA) || kind.equals(KIND_HPA2)) {
             resultMap = formatHpa(raw);
         }
 
@@ -96,9 +97,9 @@ public class KubeFormatter {
         Map<String, Object> metadataOld = (Map<String, Object>) raw.get("metadata");
         metadata.put("name", metadataOld.get("name"));
         metadata.put("namespace", metadataOld.get("namespace"));
-        if (metadataOld.get("annotations") != null) {
-            metadata.put("annotations", metadataOld.get("annotations"));
-        }
+//        if (metadataOld.get("annotations") != null) {
+//            metadata.put("annotations", metadataOld.get("annotations"));
+//        }
 
         result.put("apiVersion", raw.get("apiVersion"));
         result.put("kind", raw.get("kind"));
