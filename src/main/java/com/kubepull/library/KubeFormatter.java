@@ -35,6 +35,10 @@ public class KubeFormatter {
             resultMap = formatIngress(raw);
         } else if (kind.equals(KIND_HPA) || kind.equals(KIND_HPA2)) {
             resultMap = formatHpa(raw);
+        } else if (kind.equals(KIND_CRONJOB)) {
+            resultMap = formatCM(raw);
+        } else if (kind.equals(KIND_PERSISTENT_VOLUME) || kind.equals(KIND_PVC)) {
+            resultMap = formatCM(raw);
         }
 
         return resultMap;
@@ -120,7 +124,12 @@ public class KubeFormatter {
         metadata.put("name", metadataOld.get("name"));
         metadata.put("namespace", metadataOld.get("namespace"));
         if (metadataOld.get("annotations") != null) {
-            metadata.put("annotations", metadataOld.get("annotations"));
+            Map<String, Object> annotationsOld = (Map<String, Object>) raw.get("annotations");
+            if (annotationsOld.get("kubectl.kubernetes.io/last-applied-configuration") != null) {
+                annotationsOld.remove("kubectl.kubernetes.io/last-applied-configuration");
+            }
+
+            metadata.put("annotations", annotationsOld);
         }
 
         result.put("apiVersion", raw.get("apiVersion"));
