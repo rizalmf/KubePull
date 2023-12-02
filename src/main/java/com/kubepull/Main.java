@@ -133,6 +133,10 @@ public class Main implements Runnable {
         String readNameSpace = (String) metadata.get("namespace");
 
         Map<String, Object> data = kubeService.get(context, readNameSpace, readKind.toLowerCase(), readName);
+        if (data == null) {
+            System.out.println("cant update " + path);
+            return;
+        }
         Map<String, Object> result = formatter.format(readKind.toLowerCase(), data);
 
         updateToFile(path, yaml, result);
