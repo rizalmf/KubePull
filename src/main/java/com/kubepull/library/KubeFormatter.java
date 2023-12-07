@@ -70,6 +70,9 @@ public class KubeFormatter {
         Map<String, Object> metadataOld = (Map<String, Object>) raw.get("metadata");
         metadata.put("name", metadataOld.get("name"));
         metadata.put("namespace", metadataOld.get("namespace"));
+        if (metadataOld.get("labels") != null) {
+            metadata.put("labels", metadataOld.get("labels"));
+        }
 
         result.put("apiVersion", raw.get("apiVersion"));
         result.put("kind", raw.get("kind"));
@@ -86,6 +89,9 @@ public class KubeFormatter {
         Map<String, Object> metadataOld = (Map<String, Object>) raw.get("metadata");
         metadata.put("name", metadataOld.get("name"));
         metadata.put("namespace", metadataOld.get("namespace"));
+        if (metadataOld.get("labels") != null) {
+            metadata.put("labels", metadataOld.get("labels"));
+        }
 
         result.put("apiVersion", raw.get("apiVersion"));
         result.put("kind", raw.get("kind"));
@@ -103,6 +109,9 @@ public class KubeFormatter {
         Map<String, Object> metadataOld = (Map<String, Object>) raw.get("metadata");
         metadata.put("name", metadataOld.get("name"));
         metadata.put("namespace", metadataOld.get("namespace"));
+        if (metadataOld.get("labels") != null) {
+            metadata.put("labels", metadataOld.get("labels"));
+        }
 //        if (metadataOld.get("annotations") != null) {
 //            metadata.put("annotations", metadataOld.get("annotations"));
 //        }
@@ -131,6 +140,9 @@ public class KubeFormatter {
 
             metadata.put("annotations", annotationsOld);
         }
+        if (metadataOld.get("labels") != null) {
+            metadata.put("labels", metadataOld.get("labels"));
+        }
 
         result.put("apiVersion", raw.get("apiVersion"));
         result.put("kind", raw.get("kind"));
@@ -149,6 +161,9 @@ public class KubeFormatter {
         metadata.put("namespace", metadataOld.get("namespace"));
         if (metadataOld.get("annotations") != null) {
             metadata.put("annotations", metadataOld.get("annotations"));
+        }
+        if (metadataOld.get("labels") != null) {
+            metadata.put("labels", metadataOld.get("labels"));
         }
 
         result.put("apiVersion", raw.get("apiVersion"));
